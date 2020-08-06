@@ -212,7 +212,7 @@ public class MainScript : MonoBehaviour
     public void InputInvert(Text invert)
     {
         double ans = double.Parse(Formula.text) * (-1);
-        Answer.text = ans.ToString();
+        Formula.text = ans.ToString();
     }
 
     public void InputBack(Text back)
