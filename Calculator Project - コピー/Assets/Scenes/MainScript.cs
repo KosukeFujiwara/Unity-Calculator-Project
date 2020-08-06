@@ -75,6 +75,49 @@ public class MainScript : MonoBehaviour
         Formula.text += subtractButton.text;
     }
 
+    public void InputPercent(Text percentButton)
+    {
+        if(Formula.text == "" || Formula.text.Contains("%"))
+        {
+            return;
+        }
+        else if (Formula.text.Contains("÷") || Formula.text.Contains("×") ||
+                 Formula.text.Contains("+") || Formula.text.Contains("-"))
+        {
+
+            string[] inputString = null;
+            char inputOperator = '\0';
+
+            if (Formula.text.Contains("÷"))
+            {
+                inputString = Formula.text.Split('÷');
+                inputOperator = '÷';
+            }
+            if (Formula.text.Contains("×"))
+            {
+                inputString = Formula.text.Split('×');
+                inputOperator = '÷';
+            }
+            if (Formula.text.Contains("+"))
+            {
+                inputString = Formula.text.Split('+');
+                inputOperator = '+';
+            }
+            if (Formula.text.Contains("-"))
+            {
+                inputString = Formula.text.Split('-');
+                inputOperator = '-';
+            }
+
+            double leftNumber = double.Parse(inputString[0]);
+            double rightNumber = double.Parse(inputString[1]);
+            double parcent = leftNumber * (rightNumber / 100);
+
+            Formula.text = leftNumber.ToString() + inputOperator.ToString() + parcent.ToString();
+
+        }
+    }
+
     public void InputEqual(Text equal)
     {
         /*if (!Formula.text.Contains("÷"))
@@ -169,14 +212,8 @@ public class MainScript : MonoBehaviour
     public void InputInvert(Text invert)
     {
         double ans = double.Parse(Formula.text) * (-1);
-        Answer.text = ans.ToString();
+        Formula.text = ans.ToString();
     }
-
-    public void InputPercent(Text percent)
-    {
-
-    }
-
 
     public void InputBack(Text back)
     {
